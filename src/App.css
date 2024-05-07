@@ -23,13 +23,13 @@ border-top: 1px solid rgba(0, 0, 0, 0.15);
 .SideMenuAndPageContent{
     display: flex;
     flex: 1;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
+    /* align-items:; */
     background-color: rgba(0, 0, 0, 0.05) ;
 }
 .SideMenu{
     height: 100%;
-    width:20%;
+    width:110%;
 }
 .SideMenuVertical{
     height: 100%;

@@ -48,7 +48,6 @@ function Dashboard() {
         setCustomers(result.length)
       })
       .catch((error) => console.error(error));
-
   
 
 
