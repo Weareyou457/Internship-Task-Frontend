@@ -8,7 +8,6 @@ function App() {
     <div className="App">
       <AppHeader />
       <div className="SideMenuAndPageContent">
-        {/* <SideMenu></SideMenu> */}
         <PageContent></PageContent>
       </div>
       

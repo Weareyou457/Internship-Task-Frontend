@@ -1,6 +1,5 @@
 import { Avatar, Input, Space, Table, Typography } from "antd";
 import { useEffect, useState } from "react";
-import { getInventory } from "../../API";
 import CustomerForm from "../../Components/Modal/CustomerForm";
 
 function Inventory() {
