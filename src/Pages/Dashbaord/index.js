@@ -17,19 +17,40 @@ function Dashboard() {
   const [orders, setOrders] = useState(0);
   const [inventory, setInventory] = useState(0);
   const [customers, setCustomers] = useState(0);
-  const [revenue, setRevenue] = useState(0);
+  
 
   useEffect(() => {
-    getOrders().then((res) => {
-      setOrders(res.total);
-      setRevenue(res.discountedTotal);
-    });
-    getInventory().then((res) => {
-      setInventory(res.total);
-    });
-    getCustomers().then((res) => {
-      setCustomers(res.total);
-    });
+
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow"
+    };
+    
+
+    fetch("https://internship-task-orpin.vercel.app/Admin/customer/customers",requestOptions)
+      .then((response) => response.json())
+      .then((result) => {console.log(result)
+        setOrders(result.length)
+      })
+      .catch((error) => console.error(error));
+
+      fetch("https://internship-task-orpin.vercel.app/Admin/purchase/purchase-orders", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {console.log(result)
+        setInventory(result.length)
+      })
+      .catch((error) => console.error(error));
+
+
+      fetch("https://internship-task-orpin.vercel.app/Admin/shipping/shipping-details")
+      .then((response) => response.json())
+      .then((result) => {console.log(result)
+        setCustomers(result.length)
+      })
+  
+
+
+
   }, []);
 
   return (
@@ -48,7 +69,7 @@ function Dashboard() {
               }}
             />
           }
-          title={"Orders"}
+          title={"Purchase"}
           value={orders}
         />
         <DashboardCard
@@ -63,7 +84,7 @@ function Dashboard() {
               }}
             />
           }
-          title={"Inventory"}
+          title={"Shipping Order"}
           value={inventory}
         />
         <DashboardCard
@@ -81,21 +102,7 @@ function Dashboard() {
           title={"Customer"}
           value={customers}
         />
-        <DashboardCard
-          icon={
-            <DollarCircleOutlined
-              style={{
-                color: "red",
-                backgroundColor: "rgba(255,0,0,0.25)",
-                borderRadius: 20,
-                fontSize: 24,
-                padding: 8,
-              }}
-            />
-          }
-          title={"Revenue"}
-          value={revenue}
-        />
+        
       </Space>
       <Space>
         
