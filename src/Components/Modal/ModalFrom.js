@@ -24,7 +24,7 @@ const ModalForm = ({ visible, onCreate, onCancel }) => {
     const fetchCustomerIds = async () => {
         try {
             // Fetch customer IDs from the API
-            const response = await fetch("http://localhost:8080/Admin/customer/customers");
+            const response = await fetch("https://internship-task-orpin.vercel.app/Admin/customer/customers");
             const data = await response.json();
             // Set the fetched customer IDs to the state
             setCustomers(data);
@@ -66,7 +66,7 @@ const ModalForm = ({ visible, onCreate, onCancel }) => {
         };
 
         try {
-            const response = await fetch("http://localhost:8080/Admin/purchase/purchase-orders", requestOptions);
+            const response = await fetch("https://internship-task-orpin.vercel.app/Admin/purchase/purchase-orders", requestOptions);
             const result = await response.json();
             console.log(result);
             setmessage("Customer Data Submitted");

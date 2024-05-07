@@ -39,7 +39,7 @@ const requestOptions = {
   redirect: "follow"
 };
 try {
-    const response = await fetch("http://localhost:8080/Admin/shipping/shipping-details", requestOptions);
+    const response = await fetch("https://internship-task-orpin.vercel.app/Admin/shipping/shipping-details", requestOptions);
     const result = await response.json();
     console.log(result);
     setmessage("Customer Data Submitted");
@@ -59,7 +59,7 @@ try {
     const fetchCustomerIds = async () => {
         try {
             // Fetch customer IDs from the API
-            const response = await fetch("http://localhost:8080/Admin/customer/customers");
+            const response = await fetch("https://internship-task-orpin.vercel.app/Admin/customer/customers");
             const data = await response.json();
             // Set the fetched customer IDs to the state
             setCustomers(data);
@@ -71,7 +71,7 @@ try {
     const fetchPurchaseIds = async () => {
         try {
             // Fetch customer IDs from the API
-            const response = await fetch("http://localhost:8080/Admin/purchase/purchase-orders");
+            const response = await fetch("https://internship-task-orpin.vercel.app/Admin/purchase/purchase-orders");
             const data = await response.json();
             // Set the fetched customer IDs to the state
             setpurchase(data);

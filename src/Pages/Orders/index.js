@@ -13,7 +13,7 @@ function Orders() {
       redirect: "follow"
     };
     
-    fetch("http://localhost:8080/Admin/purchase/purchase-orders", requestOptions)
+    fetch("https://internship-task-orpin.vercel.app/Admin/purchase/purchase-orders", requestOptions)
       .then((response) => response.json())
       .then((result) => {console.log(result)
         setDataSource(result)

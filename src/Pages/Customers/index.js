@@ -14,7 +14,7 @@ function Customers() {
       redirect: "follow"
     };
     
-    fetch("http://localhost:8080/Admin/shipping/shipping-details", requestOptions)
+    fetch("https://internship-task-orpin.vercel.app/Admin/shipping/shipping-details", requestOptions)
       .then((response) => response.json())
       .then((result) => {console.log(result)
         setDataSource(result)

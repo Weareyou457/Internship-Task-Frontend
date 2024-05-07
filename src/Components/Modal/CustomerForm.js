@@ -39,7 +39,7 @@ const CustomerForm = ({ visible, onCreate, onCancel }) => {
         };
 
         try {
-            const response = await fetch("http://localhost:8080/Admin/customer/customers", requestOptions);
+            const response = await fetch("https://internship-task-orpin.vercel.app//Admin/customer/customers", requestOptions);
             const result = await response.json();
             console.log(result);
             setmessage("Customer Data Submitted");

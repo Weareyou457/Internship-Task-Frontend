@@ -14,7 +14,7 @@ function Inventory() {
       redirect: "follow"
     };
     
-    fetch("http://localhost:8080/Admin/customer/customers", requestOptions)
+    fetch("https://internship-task-orpin.vercel.app/Admin/customer/customers", requestOptions)
       .then((response) => response.json())
       .then((result) => {console.log(result)
         setDataSource(result)
