@@ -43,7 +43,7 @@ function Inventory() {
   };
 
   return (
-    <div style={{ display: 'flex', height: '100vh' }}>
+    <div style={{ display: 'flex' }}>
       <Space size={20} direction="vertical">
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
           <div><Typography.Title level={4}>Customer</Typography.Title></div>
