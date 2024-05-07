@@ -54,6 +54,7 @@ const CustomerForm = ({ visible, onCreate, onCancel }) => {
         <Modal
             visible={visible}
             onCancel={onCancel}
+            footer={null}
         >
             <div className='hdbeb'>
                 <div className='alfaiz'>

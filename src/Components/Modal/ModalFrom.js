@@ -83,6 +83,7 @@ const ModalForm = ({ visible, onCreate, onCancel }) => {
         <Modal
             visible={visible}
             onCancel={onCancel}
+            footer={null}
             // onOk={() => footer={null}}
         >
             <div className='hdbeb'>
