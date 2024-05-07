@@ -1,11 +1,13 @@
-import { Avatar, Rate, Space, Table, Typography } from "antd";
+import { Space, Table, Typography, Input } from "antd";
 import { useEffect, useState } from "react";
-import { getInventory, getOrders } from "../../API";
 import ModalForm from '../../Components/Modal/ModalFrom';
+
 function Orders() {
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState([]);
-  
+  const [filteredDataSource, setFilteredDataSource] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+
   useEffect(() => {
     setLoading(true);
     const requestOptions = {
@@ -15,13 +17,24 @@ function Orders() {
     
     fetch("https://internship-task-orpin.vercel.app/Admin/purchase/purchase-orders", requestOptions)
       .then((response) => response.json())
-      .then((result) => {console.log(result)
-        setDataSource(result)
+      .then((result) => {
+        console.log(result);
+        setDataSource(result);
+        setFilteredDataSource(result); // Initialize filtered data with all data
       })
-      .catch((error) => console.error(error));
-      setLoading(false);
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false));
   
   }, []);
+
+  const handleSearch = (e) => {
+    const value = e.target.value.toLowerCase();
+    setSearchQuery(value);
+    const filteredData = dataSource.filter((item) =>
+      item.productName.toLowerCase().includes(value)
+    );
+    setFilteredDataSource(filteredData);
+  };
 
   const [visible, setVisible] = useState(false);
 
@@ -32,9 +45,14 @@ function Orders() {
 
   return (
     <Space size={20} direction="vertical">
-      <div style={{display:"flex",justifyContent:"space-around",alignItems:"center"}}>
-      <div><Typography.Title level={4}>Purchase</Typography.Title></div>
-      <div style={{border:"10",padding:"10px",background:"#1677ff",color:"white",marginTop:"15px"}} onClick={() => setVisible(true)} >Add Purchase</div>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
+        <div><Typography.Title level={4}>Purchase</Typography.Title></div>
+        <div style={{ border: "10", padding: "10px", background: "#1677ff", color: "white", marginTop: "15px" }} onClick={() => setVisible(true)}>Add Purchase</div>
+        <Input.Search
+          placeholder="Search by product name"
+          onChange={handleSearch}
+          style={{ width: 200, marginTop: 15 }}
+        />
       </div>
 
       <ModalForm
@@ -42,6 +60,7 @@ function Orders() {
         onCreate={onCreate}
         onCancel={() => setVisible(false)}
       />
+
       <Table
         loading={loading}
         columns={[
@@ -56,7 +75,6 @@ function Orders() {
           {
             title: "Product Name",
             dataIndex: "productName",
-          
           },
           {
             title: "Quantity",
@@ -75,15 +93,16 @@ function Orders() {
                   ${mrp}
                 </span>
               );
-          }
-        },
+            }
+          },
         ]}
-        dataSource={dataSource}
+        dataSource={filteredDataSource} // Use filteredDataSource instead of dataSource
         pagination={{
           pageSize: 5,
         }}
-      ></Table>
+      />
     </Space>
   );
 }
+
 export default Orders;
